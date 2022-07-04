@@ -1,6 +1,6 @@
 import useBool from './useBool'
 import useOnce from './useOnce'
-import useSetTrue from './useSetTrue'
+import useCallTrue from './useCallTrue'
 import useToggle from './useToggle'
-import useSetFalse from './useSetFalse'
-export  {useBool,useOnce,useToggle,useSetTrue,useSetFalse}
+import useCallFalse from './useCallFalse'
+export  {useBool,useOnce,useToggle,useCallTrue,useCallFalse}
