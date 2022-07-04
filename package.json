@@ -4,8 +4,7 @@
   "description": "React hooks with performance in mind",
   "license": "MIT",
   "repository": "bladl/react-hooks",
-  "main": "lib/esm/index.js",
-  "types": "lib/types/index.d.ts",
+
   "keywords": [
     "typescript",
     "react",
@@ -28,10 +27,12 @@
   "dependencies": {
     "react": "^18.0"
   },
+  "main": "lib/cjs/index.js",
+  "types": "lib/types/index.d.ts",
+  "module": "lib/esm/index.js",
   "exports": {
-    "import": "./lib/esm/index.js",
     "require": "./lib/cjs/index.js",
-    "default": "./lib/esm/index.js"
+    "import": "./lib/esm/index.js"
   },
   "devDependencies": {
     "@types/react": "^18.0.14",
