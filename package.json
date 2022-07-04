@@ -29,8 +29,7 @@
   "exports": {
     ".": {
       "default": "./src/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
   "private": false,
   "publishConfig": {
