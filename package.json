@@ -1,7 +1,7 @@
 {
   "name": "@bladl/react-hooks",
   "version": "1.0.0",
-  "description": "React hooks for any project",
+  "description": "React hooks with performance in mind",
   "license": "MIT",
   "repository": "bladl/react-hooks",
   "main": "lib/index.js",
@@ -14,23 +14,28 @@
   "author": "bladl",
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"src/**\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "dependencies": {
     "react": "^18.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.30.4",
+    "@typescript-eslint/parser": "^5.30.4",
+    "eslint": "^8.19.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.7.4"
   }
 }

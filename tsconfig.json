@@ -6,6 +6,11 @@
     "outDir": "./lib",
     "strict": true
   },
+  "lib": [
+    "dom",
+    "dom.iterable",
+    "esnext"
+  ],
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }
