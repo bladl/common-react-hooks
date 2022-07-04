@@ -20,15 +20,24 @@
     "version": "npm run fix && git add -A src",
     "postversion": "git push && git push --tags"
   },
-  "files": [
-    "lib/**/*"
-  ],
+
   "dependencies": {
     "react": "^18.0"
   },
-  "main": "./main.cjs",
-  "module": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./lib/cjs/main.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
   "devDependencies": {
     "@types/react": "^18.0.14",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
