@@ -1,12 +1,12 @@
-import { useCallback } from 'react'
-import { BooleanState } from './useBool'
+import { useCallback } from "react";
+import { BooleanState } from "./useBool";
 
-const useToggle = (state:BooleanState)=>{
-	const [, setValue] = state
+const useToggle = (state: BooleanState) => {
+  const [, setValue] = state;
 
-	return useCallback(()=>{
-		setValue(prev=>!prev)
-	},[setValue])
-}
+  return useCallback(() => {
+    setValue((prev) => !prev);
+  }, [setValue]);
+};
 
-export default useToggle
+export default useToggle;

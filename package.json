@@ -1,6 +1,6 @@
 {
   "name": "@bladl/react-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React hooks with performance in mind",
   "license": "MIT",
   "repository": "bladl/react-hooks",
