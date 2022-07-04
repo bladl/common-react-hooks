@@ -3,4 +3,7 @@ import useOnce from './useOnce'
 import useCallTrue from './useCallTrue'
 import useToggle from './useToggle'
 import useCallFalse from './useCallFalse'
-export  {useBool,useOnce,useToggle,useCallTrue,useCallFalse}
+import useWindow from './useWindow'
+import useWindowHost from './useWindowHost'
+
+export  {useBool,useOnce,useToggle,useCallTrue,useCallFalse,useWindow,useWindowHost}
