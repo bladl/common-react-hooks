@@ -7,9 +7,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "keywords": [
+    "typescript",
     "react",
-    "hooks",
-    "common"
+    "react-hooks"
   ],
   "author": "bladl",
   "scripts": {
