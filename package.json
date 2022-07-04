@@ -26,11 +26,7 @@
   "main": "./lib/cjs/main.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/types/index.d.ts",
-  "exports": {
-    ".": {
-      "default": "./src/index.js"
-    }
-  },
+
   "private": false,
   "publishConfig": {
     "access": "public"
