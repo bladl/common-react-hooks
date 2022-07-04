@@ -27,6 +27,7 @@
   "module": "./lib/esm/index.js",
   "types": "./lib/types/index.d.ts",
   "private": false,
+  "files": ["lib"],
   "publishConfig": {
     "access": "public"
   },
