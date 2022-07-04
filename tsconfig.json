@@ -10,8 +10,9 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "allowJs": false,
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*","lib"]
 }
