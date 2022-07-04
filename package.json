@@ -1,10 +1,9 @@
 {
   "name": "@bladl/react-hooks",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React hooks with performance in mind",
   "license": "MIT",
   "repository": "bladl/react-hooks",
-
   "keywords": [
     "typescript",
     "react",
