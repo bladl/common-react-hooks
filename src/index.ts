@@ -10,6 +10,8 @@ import useOnChange from './useOnChange'
 import usePrevious from './usePrevious'
 import useWindowOrigin from './useWindowOrigin'
 import useFocusInput from './useFocusInput'
+import useDecrement from './useDecrement'
+import useIncrement from './useIncrement'
 export {
 	useBool,
 	useOnce,
@@ -22,5 +24,7 @@ export {
 	useOnChange,
 	usePrevious,
 	useWindowOrigin,
-	useFocusInput
+	useFocusInput,
+	useIncrement,
+	useDecrement
 }
