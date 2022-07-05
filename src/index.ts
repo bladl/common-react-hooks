@@ -12,6 +12,7 @@ import useWindowOrigin from './useWindowOrigin'
 import useFocusInput from './useFocusInput'
 import useDecrement from './useDecrement'
 import useIncrement from './useIncrement'
+import useWasInView from './useWasInView'
 export {
 	useBool,
 	useOnce,
@@ -26,5 +27,6 @@ export {
 	useWindowOrigin,
 	useFocusInput,
 	useIncrement,
-	useDecrement
+	useDecrement,
+	useWasInView
 }
