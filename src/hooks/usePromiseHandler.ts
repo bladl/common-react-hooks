@@ -1,4 +1,6 @@
 import { MutableRefObject, useCallback, useMemo, useRef, useState } from 'react'
+import useVariable from './useVariable'
+
 export type PromiseHandlerError = string | Error
 export type PromiseHandlerResult<D> = PromiseState<D> & {
 	readonly setPromise: (promise: Promise<D>) => void
@@ -48,17 +50,21 @@ const defaultState: StateStalled = {
 	result: null,
 	success: null,
 	loading: false,
-	promise: null,
+	promise: null
 } as const
 type PromiseState<T> =
 	| StateStalled
 	| StateOk<T>
 	| StateError<T>
 	| StateLoading<T>
-const usePromiseHandler = <T>(): PromiseHandlerResult<T> => {
+type Options<T> = {
+	onCompleted: (data: T) => void,
+	onError: (error: PromiseHandlerError) => void
+}
+const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => {
 	const [state, setState] = useState<PromiseState<T>>(defaultState)
 	const promiseRef: PromiseRef<T> = useRef(null)
-
+	const optionsRef = useVariable(options)
 	const setPromise = useCallback((promise: Promise<T> | null) => {
 		promiseRef.current = promise
 		if (promise === null) {
@@ -68,45 +74,50 @@ const usePromiseHandler = <T>(): PromiseHandlerResult<T> => {
 		setState({
 			...defaultState,
 			loading: true,
-			promise,
+			promise
 		})
 		const executeIsActual = (): boolean => promise === promiseRef.current
 
 		promise
 			.then((resp) => {
-				setState((prev) => {
-					if (executeIsActual()) {
-						return {
-							error: null,
-							loading: false,
-							success: true,
-							result: resp,
-							promise: promise,
-						}
+				if (executeIsActual()) {
+					const resultListener = optionsRef.current?.onCompleted
+					if (resultListener) {
+						resultListener(resp)
 					}
-					return prev
-				})
+					setState({
+						error: null,
+						loading: false,
+						success: true,
+						result: resp,
+						promise: promise
+					})
+				}
 			})
 			.catch((err: unknown) => {
-				setState((prev) => {
-					if (executeIsActual()) {
-						return {
-							error: normalizeError(err),
-							loading: false,
-							success: false,
-							result: null,
-							promise: promise,
-						}
+
+				if (executeIsActual()) {
+					const errorListener = optionsRef.current?.onError
+					const normalizedError = normalizeError(err)
+					if (errorListener) {
+						errorListener(normalizedError)
 					}
-					return prev
-				})
+					setState({
+						error: normalizedError,
+						loading: false,
+						success: false,
+						result: null,
+						promise: promise
+					})
+				}
+
 			})
-	}, [])
+	}, [optionsRef])
 	return useMemo<PromiseHandlerResult<T>>(() => {
 		return {
 			...state,
 			setPromise,
-			getPromise: () => promiseRef.current,
+			getPromise: () => promiseRef.current
 		}
 	}, [state, setPromise])
 }
