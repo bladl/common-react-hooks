@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo, useRef } from 'react'
+import { RefObject, useEffect, useMemo, useRef } from 'react'
 import useBool from './useBool'
 import useWindow from './useWindow'
 
@@ -10,9 +10,9 @@ interface Options extends IntersectionObserverInit {
 /**
  * Once element was in viewport TRUE state is memoized
  */
-const useWasInView = (
+const useWasInView = <T extends HTMLElement,>(
 	options: Options
-): [MutableRefObject<HTMLElement | null>, boolean] => {
+): [RefObject<T>, boolean] => {
 	const { fallbackInView = false, ssrInView = false } = options
 	const window = useWindow()
 
@@ -22,7 +22,7 @@ const useWasInView = (
 			? (intersectionSupported ? false : fallbackInView)
 			: ssrInView
 	)
-	const ref = useRef<HTMLElement>(null)
+	const ref = useRef<T>(null)
 	useEffect(() => {
 		const elem = ref.current
 		if (elem && !wasVisible && intersectionSupported) {
