@@ -1,10 +1,10 @@
 import { MutableRefObject, useCallback, useMemo, useRef, useState } from 'react'
 export type PromiseHandlerError = string | Error
-export type PromiseHandlerHook<D> = PromiseState<D> & {
+export type PromiseHandlerResult<D> = PromiseState<D> & {
 	readonly setPromise: (promise: Promise<D>) => void
 	readonly getPromise: () => Promise<D> | null
 }
-export type PromiseRef<T> = MutableRefObject<Promise<T> | null>
+type PromiseRef<T> = MutableRefObject<Promise<T> | null>
 const normalizeError = (err: unknown): PromiseHandlerError => {
 	if (err instanceof Error) {
 		return err
@@ -55,7 +55,7 @@ type PromiseState<T> =
 	| StateOk<T>
 	| StateError<T>
 	| StateLoading<T>
-const usePromiseHandler = <T>(): PromiseHandlerHook<T> => {
+const usePromiseHandler = <T>(): PromiseHandlerResult<T> => {
 	const [state, setState] = useState<PromiseState<T>>(defaultState)
 	const promiseRef: PromiseRef<T> = useRef(null)
 
@@ -102,7 +102,7 @@ const usePromiseHandler = <T>(): PromiseHandlerHook<T> => {
 				})
 			})
 	}, [])
-	return useMemo<PromiseHandlerHook<T>>(() => {
+	return useMemo<PromiseHandlerResult<T>>(() => {
 		return {
 			...state,
 			setPromise,

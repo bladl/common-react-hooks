@@ -21,6 +21,7 @@ import useOnEnterDown from './hooks/useOnEnterDown'
 import useRequired from './hooks/useRequired'
 import useRequiredContext from './hooks/useRequiredContext'
 import useTimeout from './hooks/useTimeout'
+export * from './hooks/usePromiseHandler'
 export {
 	useBool,
 	useOnce,
