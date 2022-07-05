@@ -22,6 +22,7 @@ import useRequired from './hooks/useRequired'
 import useRequiredContext from './hooks/useRequiredContext'
 import useTimeout from './hooks/useTimeout'
 export * from './hooks/usePromiseHandler'
+import useOnMount from './hooks/useOnMount'
 export {
 	useBool,
 	useOnce,
@@ -45,5 +46,6 @@ export {
 	useOnEnterDown,
 	useRequired,
 	useRequiredContext,
-	useTimeout
+	useTimeout,
+	useOnMount
 }
