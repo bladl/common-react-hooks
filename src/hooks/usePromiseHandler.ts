@@ -1,8 +1,8 @@
 import { MutableRefObject, useCallback, useMemo, useRef, useState } from 'react'
 export type PromiseHandlerError = string | Error
 export type PromiseHandlerHook<D> = PromiseState<D> & {
-	setPromise: (promise: Promise<D>) => void
-	getPromise: () => Promise<D> | null
+	readonly setPromise: (promise: Promise<D>) => void
+	readonly getPromise: () => Promise<D> | null
 }
 export type PromiseRef<T> = MutableRefObject<Promise<T> | null>
 const normalizeError = (err: unknown): PromiseHandlerError => {
@@ -16,32 +16,32 @@ const normalizeError = (err: unknown): PromiseHandlerError => {
 	return 'Unexpected error format'
 }
 type StateStalled = {
-	error: null
-	result: null
-	success: null
-	loading: false
-	promise: null
+	readonly error: null
+	readonly result: null
+	readonly success: null
+	readonly loading: false
+	readonly promise: null
 }
 type StateError<T> = {
-	error: PromiseHandlerError
-	result: null
-	success: false
-	loading: false
-	promise: Promise<T>
+	readonly error: PromiseHandlerError
+	readonly result: null
+	readonly success: false
+	readonly loading: false
+	readonly promise: Promise<T>
 }
 type StateOk<T> = {
-	error: null
-	result: T
-	success: true
-	loading: false
-	promise: Promise<T>
+	readonly error: null
+	readonly result: T
+	readonly success: true
+	readonly loading: false
+	readonly promise: Promise<T>
 }
 type StateLoading<T> = {
-	error: null
-	result: null
-	success: null
-	loading: true
-	promise: Promise<T>
+	readonly error: null
+	readonly result: null
+	readonly success: null
+	readonly loading: true
+	readonly promise: Promise<T>
 }
 const defaultState: StateStalled = {
 	error: null,
