@@ -8,4 +8,18 @@ import useWindowHost from './useWindowHost'
 import usePromiseHandler from './usePromiseHandler'
 import useOnChange from './useOnChange'
 import usePrevious from './usePrevious'
-export  {useBool,useOnce,useToggle,useCallTrue,useCallFalse,useWindow,useWindowHost,usePromiseHandler,useOnChange,usePrevious}
+import useWindowOrigin from './useWindowOrigin'
+
+export {
+	useBool,
+	useOnce,
+	useToggle,
+	useCallTrue,
+	useCallFalse,
+	useWindow,
+	useWindowHost,
+	usePromiseHandler,
+	useOnChange,
+	usePrevious,
+	useWindowOrigin
+}
