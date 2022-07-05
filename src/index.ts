@@ -20,6 +20,7 @@ import useInterval from './hooks/useInterval'
 import useOnEnterDown from './hooks/useOnEnterDown'
 import useRequired from './hooks/useRequired'
 import useRequiredContext from './hooks/useRequiredContext'
+import useTimeout from './hooks/useTimeout'
 export {
 	useBool,
 	useOnce,
@@ -42,5 +43,6 @@ export {
 	useInterval,
 	useOnEnterDown,
 	useRequired,
-	useRequiredContext
+	useRequiredContext,
+	useTimeout
 }
