@@ -58,8 +58,8 @@ type PromiseState<T> =
 	| StateError<T>
 	| StateLoading<T>
 type Options<T> = {
-	readonly onCompleted: (data: T) => void,
-	readonly onError: (error: PromiseHandlerError) => void
+	readonly onCompleted?: (data: T) => void,
+	readonly onError: (error?: PromiseHandlerError) => void
 }
 const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => {
 	const [state, setState] = useState<PromiseState<T>>(defaultState)
