@@ -23,6 +23,7 @@ import useRequiredContext from './hooks/useRequiredContext'
 import useTimeout from './hooks/useTimeout'
 export * from './hooks/usePromiseHandler'
 import useOnMount from './hooks/useOnMount'
+import useHTMLInputRef from './hooks/useHTMLInputRef'
 export {
 	useBool,
 	useOnce,
@@ -47,5 +48,6 @@ export {
 	useRequired,
 	useRequiredContext,
 	useTimeout,
+	useHTMLInputRef,
 	useOnMount
 }
