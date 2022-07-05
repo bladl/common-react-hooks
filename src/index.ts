@@ -14,10 +14,17 @@ import useDecrement from './hooks/useDecrement'
 import useIncrement from './hooks/useIncrement'
 import useWasInView from './hooks/useWasInView'
 import useVariable from './hooks/useVariable'
+import useTodayMidnight from './hooks/useTodayMidnight'
+import useNumber from './hooks/useNumber'
+import useInterval from './hooks/useInterval'
+import useOnEnterDown from './hooks/useOnEnterDown'
+import useRequired from './hooks/useRequired'
+import useRequiredContext from './hooks/useRequiredContext'
 export {
 	useBool,
 	useOnce,
 	useToggle,
+	useTodayMidnight,
 	useCallTrue,
 	useCallFalse,
 	useWindow,
@@ -30,5 +37,10 @@ export {
 	useIncrement,
 	useDecrement,
 	useWasInView,
-	useVariable
+	useVariable,
+	useNumber,
+	useInterval,
+	useOnEnterDown,
+	useRequired,
+	useRequiredContext
 }
