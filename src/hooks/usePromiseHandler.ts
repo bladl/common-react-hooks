@@ -3,7 +3,7 @@ import useVariable from './useVariable'
 
 export type PromiseHandlerError = string | Error
 export type PromiseHandlerResult<D> = PromiseState<D> & {
-	readonly setPromise: (promise: Promise<D>,options:Options<D>) => void
+	readonly setPromise: (promise: Promise<D>,options?:Options<D>) => void
 	readonly getPromise: () => Promise<D> | null
 }
 type PromiseRef<T> = MutableRefObject<Promise<T> | null>
