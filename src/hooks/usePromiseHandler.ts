@@ -3,7 +3,7 @@ import useVariable from './useVariable'
 
 export type PromiseHandlerError = string | Error
 export type PromiseHandlerResult<D> = PromiseState<D> & {
-	readonly setPromise: (promise: Promise<D>) => void
+	readonly setPromise: (promise: Promise<D>,options:Options<D>) => void
 	readonly getPromise: () => Promise<D> | null
 }
 type PromiseRef<T> = MutableRefObject<Promise<T> | null>
@@ -58,14 +58,14 @@ type PromiseState<T> =
 	| StateError<T>
 	| StateLoading<T>
 type Options<T> = {
-	onCompleted: (data: T) => void,
-	onError: (error: PromiseHandlerError) => void
+	readonly onCompleted: (data: T) => void,
+	readonly onError: (error: PromiseHandlerError) => void
 }
 const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => {
 	const [state, setState] = useState<PromiseState<T>>(defaultState)
 	const promiseRef: PromiseRef<T> = useRef(null)
 	const optionsRef = useVariable(options)
-	const setPromise = useCallback((promise: Promise<T> | null) => {
+	const setPromise = useCallback((promise: Promise<T> | null, contextOptions:Options<T>) => {
 		promiseRef.current = promise
 		if (promise === null) {
 			setState(defaultState)
@@ -85,6 +85,10 @@ const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => 
 					if (resultListener) {
 						resultListener(resp)
 					}
+					if (contextOptions.onCompleted) {
+						contextOptions.onCompleted(resp)
+					}
+
 					setState({
 						error: null,
 						loading: false,
@@ -101,6 +105,9 @@ const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => 
 					const normalizedError = normalizeError(err)
 					if (errorListener) {
 						errorListener(normalizedError)
+					}
+					if (contextOptions.onError) {
+						contextOptions.onError(normalizedError)
 					}
 					setState({
 						error: normalizedError,
