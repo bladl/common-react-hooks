@@ -1,6 +1,6 @@
 {
   "name": "@bladl/react-hooks",
-  "version": "1.2.5",
+  "version": "1.2.4",
   "description": "React hooks with performance in mind",
   "license": "MIT",
   "repository": "bladl/react-hooks",
@@ -32,6 +32,7 @@
   },
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
+  "types": "./lib/types/index.d.ts",
   "private": false,
   "files": [
     "lib"
