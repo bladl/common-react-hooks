@@ -13,6 +13,7 @@ import useFocusInput from './useFocusInput'
 import useDecrement from './useDecrement'
 import useIncrement from './useIncrement'
 import useWasInView from './useWasInView'
+import useVariable from './useVariable'
 export {
 	useBool,
 	useOnce,
@@ -28,5 +29,6 @@ export {
 	useFocusInput,
 	useIncrement,
 	useDecrement,
-	useWasInView
+	useWasInView,
+	useVariable
 }
