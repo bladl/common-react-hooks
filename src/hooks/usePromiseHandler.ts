@@ -3,7 +3,7 @@ import useVariable from './useVariable'
 
 export type PromiseHandlerError = string | Error
 export type PromiseHandlerResult<D> = PromiseState<D> & {
-	readonly setPromise: (promise: Promise<D>,options?:Options<D>) => void
+	readonly setPromise: (promise: Promise<D>,options?:PromiseHandlerOptions<D>) => void
 	readonly getPromise: () => Promise<D> | null
 }
 type PromiseRef<T> = MutableRefObject<Promise<T> | null>
@@ -57,15 +57,15 @@ type PromiseState<T> =
 	| StateOk<T>
 	| StateError<T>
 	| StateLoading<T>
-type Options<T> = {
+export type PromiseHandlerOptions<T> = {
 	readonly onCompleted?: (data: T) => void,
 	readonly onError?: (error: PromiseHandlerError) => void
 }
-const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => {
+const usePromiseHandler = <T>(options?: PromiseHandlerOptions<T>): PromiseHandlerResult<T> => {
 	const [state, setState] = useState<PromiseState<T>>(defaultState)
 	const promiseRef: PromiseRef<T> = useRef(null)
 	const optionsRef = useVariable(options)
-	const setPromise = useCallback((promise: Promise<T> | null, contextOptions?:Options<T>) => {
+	const setPromise = useCallback((promise: Promise<T> | null, contextOptions?:PromiseHandlerOptions<T>) => {
 		promiseRef.current = promise
 		if (promise === null) {
 			setState(defaultState)
