@@ -23,7 +23,14 @@
   "dependencies": {
     "react": "^18.0"
   },
-  "main": "./lib/cjs/main.js",
+  "exports": {
+    "node": {
+        "require": "./lib/cjs/index.js",
+        "import": "./lib/esm/index.js"
+    },
+    "browser": "./lib/esm/index.js"
+  },
+  "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/types/index.d.ts",
   "private": false,
