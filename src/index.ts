@@ -9,7 +9,7 @@ import usePromiseHandler from './usePromiseHandler'
 import useOnChange from './useOnChange'
 import usePrevious from './usePrevious'
 import useWindowOrigin from './useWindowOrigin'
-
+import useFocusInput from './useFocusInput'
 export {
 	useBool,
 	useOnce,
@@ -21,5 +21,6 @@ export {
 	usePromiseHandler,
 	useOnChange,
 	usePrevious,
-	useWindowOrigin
+	useWindowOrigin,
+	useFocusInput
 }
