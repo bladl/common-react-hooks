@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import usePrev from './usePrev'
+import usePrevious from './usePrevious'
 
 const useOnChange = <T>(
 	callback: (previous: T) => void | (() => void),
 	value: T,
 ): void => {
-	const previous = usePrev(value)
+	const previous = usePrevious(value)
 	useEffect(() => {
 		if (previous !== value) {
 			return callback(previous)

@@ -5,5 +5,7 @@ import useToggle from './useToggle'
 import useCallFalse from './useCallFalse'
 import useWindow from './useWindow'
 import useWindowHost from './useWindowHost'
-
-export  {useBool,useOnce,useToggle,useCallTrue,useCallFalse,useWindow,useWindowHost}
+import usePromiseHandler from './usePromiseHandler'
+import useOnChange from './useOnChange'
+import usePrevious from './usePrevious'
+export  {useBool,useOnce,useToggle,useCallTrue,useCallFalse,useWindow,useWindowHost,usePromiseHandler,useOnChange,usePrevious}
