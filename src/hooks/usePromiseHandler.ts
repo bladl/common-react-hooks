@@ -65,7 +65,7 @@ const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => 
 	const [state, setState] = useState<PromiseState<T>>(defaultState)
 	const promiseRef: PromiseRef<T> = useRef(null)
 	const optionsRef = useVariable(options)
-	const setPromise = useCallback((promise: Promise<T> | null, contextOptions:Options<T>) => {
+	const setPromise = useCallback((promise: Promise<T> | null, contextOptions?:Options<T>) => {
 		promiseRef.current = promise
 		if (promise === null) {
 			setState(defaultState)
@@ -85,7 +85,7 @@ const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => 
 					if (resultListener) {
 						resultListener(resp)
 					}
-					if (contextOptions.onCompleted) {
+					if (contextOptions && contextOptions.onCompleted) {
 						contextOptions.onCompleted(resp)
 					}
 
@@ -106,7 +106,7 @@ const usePromiseHandler = <T>(options?: Options<T>): PromiseHandlerResult<T> => 
 					if (errorListener) {
 						errorListener(normalizedError)
 					}
-					if (contextOptions.onError) {
+					if (contextOptions && contextOptions.onError) {
 						contextOptions.onError(normalizedError)
 					}
 					setState({
