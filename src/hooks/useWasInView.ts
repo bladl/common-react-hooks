@@ -3,8 +3,9 @@ import useBool from './useBool'
 import useWindow from './useWindow'
 
 interface Options extends IntersectionObserverInit {
-	fallbackInView?: boolean
-	ssrInView?: boolean
+	readonly fallbackInView?: boolean
+	readonly ssrInView?: boolean
+
 }
 
 /**
