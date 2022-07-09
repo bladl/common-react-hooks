@@ -1,5 +1,6 @@
-import { RefObject, useEffect, useMemo, useRef } from 'react'
+import { RefObject, useCallback, useEffect, useMemo, useRef } from 'react'
 import useBool from './useBool'
+import useVariable from './useVariable'
 import useWindow from './useWindow'
 
 interface Options extends IntersectionObserverInit {
@@ -11,19 +12,33 @@ interface Options extends IntersectionObserverInit {
 /**
  * Once element was in viewport TRUE state is memoized
  */
-const useWasInView = <T extends HTMLElement, >(
-	options: Options
+const useWasInView = <T extends HTMLElement>(
+	{ ssrInView = false, fallbackInView = false, onInView, root, rootMargin, threshold }: Options = {}
 ): [RefObject<T>, boolean] => {
-	const { fallbackInView = false, ssrInView = false, onInView } = options
-	const window = useWindow()
 
+	const window = useWindow()
 	const intersectionSupported = useMemo(() => window && 'IntersectionObserver' in window, [window])
+
 	const [wasVisible, setWasVisible] = useBool(
 		window
 			? (intersectionSupported ? false : fallbackInView)
 			: ssrInView
 	)
+	const isInViewRef = useVariable(onInView)
+	const handleVisible = useCallback((element: HTMLElement) => {
+		if (isInViewRef.current) {
+			isInViewRef.current(element)
+		}
+		setWasVisible(true)
+	}, [isInViewRef, setWasVisible])
+
 	const ref = useRef<T>(null)
+	useEffect(() => {
+		const input = ref.current
+		if (!intersectionSupported && fallbackInView && input) {
+			handleVisible(input)
+		}
+	}, [fallbackInView, handleVisible, intersectionSupported])
 	useEffect(() => {
 		const elem = ref.current
 		if (elem && !wasVisible && intersectionSupported) {
@@ -38,18 +53,15 @@ const useWasInView = <T extends HTMLElement, >(
 							entry.isIntersecting === undefined //Fix for UC browser
 					)
 				) {
-					setWasVisible(true)
-					if (onInView) {
-						onInView(elem)
-					}
+					handleVisible(elem)
 					clear()
 				}
-			}, options)
+			}, { root, rootMargin, threshold })
 			observer.observe(elem)
 			return clear
 		}
 		return undefined
-	})
+	}, [handleVisible, intersectionSupported, root, rootMargin, threshold, wasVisible])
 	return [ref, wasVisible]
 }
 export default useWasInView
