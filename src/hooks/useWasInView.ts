@@ -5,16 +5,16 @@ import useWindow from './useWindow'
 interface Options extends IntersectionObserverInit {
 	readonly fallbackInView?: boolean
 	readonly ssrInView?: boolean
-
+	readonly onInView?: (element: HTMLElement) => void
 }
 
 /**
  * Once element was in viewport TRUE state is memoized
  */
-const useWasInView = <T extends HTMLElement,>(
+const useWasInView = <T extends HTMLElement, >(
 	options: Options
 ): [RefObject<T>, boolean] => {
-	const { fallbackInView = false, ssrInView = false } = options
+	const { fallbackInView = false, ssrInView = false, onInView } = options
 	const window = useWindow()
 
 	const intersectionSupported = useMemo(() => window && 'IntersectionObserver' in window, [window])
@@ -32,13 +32,16 @@ const useWasInView = <T extends HTMLElement,>(
 			}
 			const observer = new IntersectionObserver((entries) => {
 				if (
-					entries.some(
+					entries.find(
 						(entry) =>
 							entry.isIntersecting ||
 							entry.isIntersecting === undefined //Fix for UC browser
 					)
 				) {
 					setWasVisible(true)
+					if (onInView) {
+						onInView(elem)
+					}
 					clear()
 				}
 			}, options)
