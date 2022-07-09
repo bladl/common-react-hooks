@@ -20,35 +20,30 @@ const normalizeError = (err: unknown): PromiseHandlerError => {
 type StateStalled = {
 	readonly error: null
 	readonly result: null
-	readonly success: null
 	readonly loading: false
 	readonly promise: null
 }
 type StateError<T> = {
 	readonly error: PromiseHandlerError
 	readonly result: null
-	readonly success: false
 	readonly loading: false
 	readonly promise: Promise<T>
 }
 type StateOk<T> = {
 	readonly error: null
 	readonly result: T
-	readonly success: true
 	readonly loading: false
 	readonly promise: Promise<T>
 }
 type StateLoading<T> = {
 	readonly error: null
 	readonly result: null
-	readonly success: null
 	readonly loading: true
 	readonly promise: Promise<T>
 }
 const defaultState: StateStalled = {
 	error: null,
 	result: null,
-	success: null,
 	loading: false,
 	promise: null
 } as const
@@ -92,7 +87,6 @@ const usePromiseHandler = <T>(options?: PromiseHandlerOptions<T>): PromiseHandle
 					setState({
 						error: null,
 						loading: false,
-						success: true,
 						result: resp,
 						promise: promise
 					})
@@ -112,7 +106,6 @@ const usePromiseHandler = <T>(options?: PromiseHandlerOptions<T>): PromiseHandle
 					setState({
 						error: normalizedError,
 						loading: false,
-						success: false,
 						result: null,
 						promise: promise
 					})

@@ -26,6 +26,8 @@ import useOnMount from './hooks/useOnMount'
 import useHTMLInputRef from './hooks/useHTMLInputRef'
 import useWindowSize from './hooks/useWindowSize'
 export * from './hooks/useWindowSize'
+export * from './hooks/usePromiseState'
+import usePromiseState from './hooks/usePromiseState'
 export {
 	useBool,
 	useOnce,
@@ -52,5 +54,6 @@ export {
 	useTimeout,
 	useHTMLInputRef,
 	useOnMount,
+	usePromiseState,
 	useWindowSize
 }
