@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2019",
     "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -8,10 +8,14 @@
     "noUnusedParameters": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
     "allowJs": false,
     "moduleResolution": "Node",
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "outDir": "lib/esm",
+    "declaration": true,
+    "declarationDir": "lib/types",
+    "sourceMap": false
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*","lib"]

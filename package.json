@@ -11,7 +11,7 @@
   ],
   "author": "bladl",
   "scripts": {
-    "build": "tsc --project tsconfig.esm.json & tsc --project tsconfig.cjs.json",
+    "build": "tsc --project tsconfig.json",
     "fix": "eslint --fix \"src/**\"",
     "lint": "eslint \"src/**\"",
     "prepare": "npm run build",
@@ -23,14 +23,8 @@
   "dependencies": {
     "react": "^18.0"
   },
-  "exports": {
-    "node": {
-      "require": "./lib/cjs/index.js",
-      "import": "./lib/esm/index.js"
-    },
-    "browser": "./lib/esm/index.js"
-  },
-  "main": "./lib/cjs/index.js",
+  "exports": "./lib/esm/index.js",
+  "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/types/index.d.ts",
   "private": false,
