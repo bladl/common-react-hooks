@@ -9,14 +9,15 @@
     "react",
     "react-hooks"
   ],
-  "type": "module",
   "author": "bladl",
   "scripts": {
-    "build": "tsc --project tsconfig.json",
+    "build": "yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "fix": "eslint --fix \"src/**\"",
     "lint": "eslint \"src/**\"",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run lint",
+    "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run fix && git add -A src",
     "postversion": "git push && git push --tags"
@@ -24,13 +25,14 @@
   "dependencies": {
     "react": "^18.0"
   },
-  "exports": "./lib/esm/index.js",
-  "main": "./lib/esm/index.js",
-  "module": "./lib/esm/index.js",
-  "types": "./lib/types/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "private": false,
   "files": [
-    "lib"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"

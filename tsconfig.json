@@ -12,11 +12,11 @@
     "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
-    "outDir": "lib/esm",
+    "outDir": "dist/esm",
     "declaration": true,
-    "declarationDir": "lib/types",
+    "declarationDir": "dist/types",
     "sourceMap": false
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*","lib"]
+  "exclude": ["node_modules", "**/__tests__/*","dist"]
 }
