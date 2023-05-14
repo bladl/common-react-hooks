@@ -9,6 +9,7 @@
     "react",
     "react-hooks"
   ],
+  "type": "module",
   "author": "bladl",
   "scripts": {
     "build": "tsc --project tsconfig.json",
